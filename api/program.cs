@@ -7,11 +7,21 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodosDb>(opt => opt.UseInMemoryDatabase("todos"));
 builder.Services.AddScoped<TodosService>();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+  app.UseSwagger();
+  app.UseSwaggerUI();
+}
 
-app.MapGroup("/api").MapTodosApi();
+
+
+app.MapGroup("/api").MapTodosApi().WithOpenApi();
 
 app.Run();
 

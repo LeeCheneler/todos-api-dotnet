@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Routing;
 using Todos.Api.Models;
 using Todos.Api.Services;
 
@@ -12,23 +11,22 @@ public static class RouteGroupBuilderExtensions
     {
       var todos = await todosService.GetTodosAsync();
 
-      return Results.Ok(todos);
+      return TypedResults.Ok(todos);
     });
 
     group.MapPost("/todos", async (Todo todo, TodosService todosService) =>
     {
       var addedTodo = await todosService.AddTodoAsync(todo);
 
-      return Results.Ok(addedTodo);
+      return TypedResults.Ok(addedTodo);
     });
 
     group.MapPut("/todos", async (Todo todo, TodosService todosService) =>
     {
       var updatedTodo = await todosService.UpdateTodoAsync(todo);
 
-      return Results.Ok(updatedTodo);
+      return TypedResults.Ok(updatedTodo);
     });
-
 
     return group;
   }
