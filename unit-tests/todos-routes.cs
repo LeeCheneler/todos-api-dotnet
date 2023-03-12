@@ -45,7 +45,7 @@ public class TodosRoutesTests
     Assert.Equal(HttpStatusCode.OK, getTodosResult.StatusCode);
     Assert.IsAssignableFrom<List<Todo>>(todos);
     Assert.NotNull(todos);
-    Assert.Equal(1, todos.Count);
+    Assert.Single(todos);
     Assert.Equal(todo.Title, todos[0].Title);
     Assert.Equal(todo.Description, todos[0].Description);
   }
@@ -73,7 +73,7 @@ public class TodosRoutesTests
     Assert.Equal(HttpStatusCode.OK, getUpdatedTodosResult.StatusCode);
     Assert.IsAssignableFrom<List<Todo>>(updatedTodos);
     Assert.NotNull(updatedTodos);
-    Assert.Equal(1, updatedTodos.Count);
+    Assert.Single(updatedTodos);
     Assert.Equal(updatedTodo.Id, updatedTodos[0].Id);
     Assert.Equal(updatedTodo.Title, updatedTodos[0].Title);
     Assert.Equal(updatedTodo.Description, updatedTodos[0].Description);
