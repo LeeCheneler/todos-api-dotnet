@@ -6,8 +6,8 @@ namespace Todos.Api.Db;
 
 public class TodosDb : DbContext
 {
-  public TodosDb(DbContextOptions<TodosDb> options)
-        : base(options) { }
+    public TodosDb(DbContextOptions<TodosDb> options)
+          : base(options) { }
 
-  public DbSet<Todo> Todos => Set<Todo>();
+    public DbSet<Todo> Todos => Set<Todo>();
 }

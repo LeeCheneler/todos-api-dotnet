@@ -5,20 +5,20 @@ namespace Todos.Api.Models;
 
 public enum TodoStatus
 {
-  NotStarted,
-  InProgress,
-  Completed
+    NotStarted,
+    InProgress,
+    Completed
 }
 
 public class Todo
 {
-  [Key]
-  [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-  public int Id { get; set; }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
 
-  public string Title { get; set; } = String.Empty;
+    public string Title { get; set; } = String.Empty;
 
-  public string? Description { get; set; }
+    public string? Description { get; set; }
 
-  public TodoStatus Status { get; set; } = TodoStatus.NotStarted;
+    public TodoStatus Status { get; set; } = TodoStatus.NotStarted;
 }
