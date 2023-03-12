@@ -9,7 +9,9 @@ builder.Services.AddDbContext<TodosDb>(opt => opt.UseInMemoryDatabase("todos"));
 builder.Services.AddScoped<TodosService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddApplicationInsightsTelemetry();
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 var app = builder.Build();
 
@@ -19,9 +21,7 @@ if (app.Environment.IsDevelopment())
   app.UseSwaggerUI();
 }
 
-
-
-app.MapGroup("/api").MapTodosApi().WithOpenApi();
+app.MapGroup("/api").MapTodosApi(app.Logger).WithOpenApi();
 
 app.Run();
 

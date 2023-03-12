@@ -5,10 +5,12 @@ namespace Todos.Api.Routes;
 
 public static class RouteGroupBuilderExtensions
 {
-  public static RouteGroupBuilder MapTodosApi(this RouteGroupBuilder group)
+  public static RouteGroupBuilder MapTodosApi(this RouteGroupBuilder group, ILogger logger)
   {
     group.MapGet("/todos", async (TodosService todosService) =>
     {
+      logger.LogInformation("Getting all todos");
+
       var todos = await todosService.GetTodosAsync();
 
       return TypedResults.Ok(todos);
@@ -16,6 +18,8 @@ public static class RouteGroupBuilderExtensions
 
     group.MapPost("/todos", async (Todo todo, TodosService todosService) =>
     {
+      logger.LogInformation("Adding todo");
+
       var addedTodo = await todosService.AddTodoAsync(todo);
 
       return TypedResults.Ok(addedTodo);
@@ -23,6 +27,8 @@ public static class RouteGroupBuilderExtensions
 
     group.MapPut("/todos", async (Todo todo, TodosService todosService) =>
     {
+      logger.LogInformation("Updating todo");
+
       var updatedTodo = await todosService.UpdateTodoAsync(todo);
 
       return TypedResults.Ok(updatedTodo);
